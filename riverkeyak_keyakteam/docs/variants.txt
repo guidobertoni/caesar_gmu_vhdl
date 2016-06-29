@@ -1,0 +1,19 @@
+v1
+    Reference software:
+        Keyakv2
+
+    Architecture description:
+        Single-round iterative architecture with a registered output.
+
+    Key setup time:
+        1
+    Execution time of authenticated encryption:
+        12+Nm*12+12
+    Execution time of authenticated decryption:
+        12+Nc*12+12
+
+    Non-default generic settings:
+        G_DBLK_SIZE = 544
+        G_ABLK_SIZE = 544
+
+
