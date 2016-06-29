@@ -1,0 +1,47 @@
+A. Hardware description language used
+
+    VHDL
+
+B. Type of implementation
+
+    High-speed
+
+C. Use of hardware description language source files provided as a part of the 
+Development Package
+    
+    File name           | Used  | Release number | Functional modifications 
+                        | (Y/N) |                | (Y/N)                    
+    =========================================================================
+    PreProcessor.vhd    | Y     | v1.0-3         |  N                       
+    PostProcessor.vhd   | Y     | v1.0-3         |  N                       
+    fwft_fifo.vhd       | Y     | v1.0-3         |  N                       
+    
+D. Supported types and order of segment types
+
+    a. input to encryption          npub, ad, data
+    b. output from encryption       data, tag
+    c. input to decryption          npub, ad, data, tag    
+    d. output from decryption       data
+
+E. Deviations from the CAESAR Hardware API v1.0 specification
+    
+    None
+E.1
+	The supported maximum size for AD is 24 bytes. 
+		Motivation: GMU API allows injecting inputs to the ciphercore via a single port, namely bdi. Keyak algorithm allows manipulating in parallel two streams, one for the AD and a second for plaintext/ciphertext. These two streams should be multiplexed on the same bdi port. These two streams are operating on different granularity, the plaintext/ciphertext works on blocks of 168 bytes while the AD works on block of 24 bytes when the plaintext/ciphertext stream is not empty or on 192 byte if empty. When deciding to dimension the bdi, we have preferred to favor a scenario where plaintext/ciphertext could be very long and thus dimension the bdi to the size of the plaintext input block (168 bytes). To simplify the implementation and sticking to the GMU API we decided to limit the AD size to 24 bytes otherwise we would have to a) imposing a strict message sequencing b) manage buffers in the ciphercore and/or c) change the API, and make the comparison/benchmarking hard to manage.
+	
+	The tag size is fixed to 16 bytes.
+	
+	The nonce size is fixed to 16 bytes.
+	
+	The knot operation described in the documentation (Keyak v2.1) is not supported. 
+	
+	The generation of a tag right after absorbing the SUV is not supported, while it is possible to generate a tag with an empty message.
+	
+	Keyak supports sessions, in few words a session consists in absorbing key and nonce only at the beginning of the session establishment and after processing messages in an ordered sequence without requiring keys or additional nonce’s. This can be implemented partially with the current GMU API. In the current version of the HW sessions are supported with plaintext smaller than 152 bytes. The reason for this limitation is that when a message with plaintext/ciphertext larger than 168 is absorbed and a TAG is generated at the same time, the core produces a ciphertext/plaintext of 152 bytes instead of 168 bytes. The difference corresponds with the size of the TAG and requires an operation of outputting a not full block even if this is not the last block of the message. We did not find the way of managing this in the current GMU API HW.
+	
+
+F. Disagreement with the Appendix to the CAESAR Hardware API v1.0
+
+    None
+    

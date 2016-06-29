@@ -1,0 +1,10 @@
+AEAD_pkg.vhd
+keyak_globals.vhd
+keccakp_round.vhd
+CipherCore.vhd
+fwft_fifo.vhd
+PreProcessor.vhd
+PostProcessor.vhd
+AEAD.vhd
+AEAD_Arch.vhd
+AEAD_Wrapper.vhd
