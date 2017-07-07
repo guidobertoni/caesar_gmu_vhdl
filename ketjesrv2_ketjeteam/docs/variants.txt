@@ -1,0 +1,18 @@
+v2
+    Reference software:
+        ketjev2
+
+    Architecture description:
+        Single-round iterative architecture 
+
+    Key setup time:
+        1
+    Execution time of authenticated encryption:
+        12+Na+Nm+9
+    Execution time of authenticated decryption:
+        12+Na+Nc+9
+
+    Non-default generic settings:
+        G_DBLK_SIZE = 32
+        G_ABLK_SIZE = 32
+

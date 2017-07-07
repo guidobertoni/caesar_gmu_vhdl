@@ -1,0 +1,12 @@
+AEAD_pkg.vhd
+ketjev2_globals.vhd
+ketjev2_pi.vhd
+ketjev2_inversepi.vhd
+ketjev2_round.vhd
+CipherCore.vhd
+fwft_fifo.vhd
+PreProcessor.vhd
+PostProcessor.vhd
+AEAD.vhd
+AEAD_Arch.vhd
+AEAD_Wrapper.vhd
