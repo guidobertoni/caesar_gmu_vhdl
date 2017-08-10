@@ -50,16 +50,16 @@ type k_state        is array ((num_plane-1) downto 0)  of k_plane;
  
 constant k_seq_dly : Time := 1 ns; 
   
-constant        c_G_NPUB_SIZE              : integer := 64;  
+constant        c_G_NPUB_SIZE              : integer := 128;  
 -- not used
 constant        c_G_NSEC_SIZE              : integer := 96;   
 
 constant        c_G_DBLK_SIZE              : integer := 32;  
-constant        c_G_KEY_SIZE               : integer := 96;  
+constant        c_G_KEY_SIZE               : integer := 128;  
 -- not used
 constant        c_G_RDKEY_SIZE             : integer := 96;  
 
-constant        c_G_TAG_SIZE               : integer := 64;  
+constant        c_G_TAG_SIZE               : integer := 128;  
 constant        c_G_BS_BYTES               : integer := 2;    
 constant        c_G_CTR_AD_SIZE            : integer := 64;   
 constant        c_G_CTR_D_SIZE             : integer := 64   ;
